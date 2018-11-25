@@ -1,21 +1,29 @@
 import numpy as np
 import pandas as pd
+import boto3
 #from sklearn import cross_validation as cv
 from sklearn.metrics.pairwise import pairwise_distances
 
 
 def recommend_movie(userid,num):
     # read in users
-    df_users = pd.read_csv('D:\\u.data', sep='\t', names=['user_id', 'item_id', 'rating', 'timestamp'])
+    client = boto3.client('s3') #low-level functional API
+
+	resource = boto3.resource('s3') #high-level object-oriented API
+	my_bucket = resource.Bucket('qz5uwdrdinus') #subsitute this for your s3 bucket name. 
+
+	obj = client.get_object(Bucket='qz5uwdrdinus', Key='u.data')
+	df_users = pd.read_csv(obj['Body'], sep='\t', names=['user_id', 'item_id', 'rating', 'timestamp'])
     n_users = df_users.user_id.unique().shape[0]
     n_items = df_users.item_id.unique().shape[0]
 
 # read in items
     item_dic = {}
-    for line in open('D:\\u.item', encoding='utf-8', mode = 'r'):
-        record = line.strip().split('|')
-        movie_id, movie_name = record[0], record[1]
-        item_dic[movie_id] = movie_name
+	obj_item = client.get_object(Bucket='qz5uwdrdinus', Key='u.item')
+	for line in obj_item['Body'].read().splitlines():
+		record = line.strip().split('|')
+		movie_id, movie_name = record[0], record[1]
+		item_dic[movie_id] = movie_name
 
     train_data_matrix = np.zeros((n_users, n_items))
     #train_data, test_data = cv.train_test_split(df_users, test_size=0.01)
