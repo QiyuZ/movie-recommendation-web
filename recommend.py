@@ -9,18 +9,18 @@ def recommend_movie(userid,num):
     # read in users
     client = boto3.client('s3') #low-level functional API
 
-	resource = boto3.resource('s3') #high-level object-oriented API
-	my_bucket = resource.Bucket('qz5uwdrdinus') #subsitute this for your s3 bucket name. 
+    resource = boto3.resource('s3') #high-level object-oriented API
+    my_bucket = resource.Bucket('qz5uwdrdinus') #subsitute this for your s3 bucket name.
 
-	obj = client.get_object(Bucket='qz5uwdrdinus', Key='u.data')
-	df_users = pd.read_csv(obj['Body'], sep='\t', names=['user_id', 'item_id', 'rating', 'timestamp'])
+    obj = client.get_object(Bucket='qz5uwdrdinus', Key='u.data')
+    df_users = pd.read_csv(obj['Body'], sep='\t', names=['user_id', 'item_id', 'rating', 'timestamp'])
     n_users = df_users.user_id.unique().shape[0]
     n_items = df_users.item_id.unique().shape[0]
 
 # read in items
     item_dic = {}
-	obj_item = client.get_object(Bucket='qz5uwdrdinus', Key='u.item')
-	for line in obj_item['Body'].read().splitlines():
+    obj_item = client.get_object(Bucket='qz5uwdrdinus', Key='u.item')
+    for line in obj_item['Body'].read().splitlines():
 		record = line.strip().split('|')
 		movie_id, movie_name = record[0], record[1]
 		item_dic[movie_id] = movie_name
@@ -47,7 +47,6 @@ def recommend_movie(userid,num):
 
     user_prediction = predict(train_data_matrix, user_similarity, type='user') #not used
     item_prediction = predict(train_data_matrix, item_similarity, type='item')
-
 
     a = list(item_prediction[userid])
     pre = sorted(range(len(a)), key=lambda i: a[i])[-num:]
