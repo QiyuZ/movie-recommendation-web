@@ -27,13 +27,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/index/"><i class="fas fa-home"></i> Home</a>
+                    <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/movies/"><i class="fas fa-film"></i> Movie</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#"><i class="fas fa-info"></i> About Us</a>
+                    <a class="nav-link" href="#"><i class="fas fa-info"></i> About</a>
                 </li>
             </ul>
         </div>
@@ -137,18 +137,18 @@
                             </div>
 
                             <div class="card">
-                                <div class="card-header" role="tab" id="dannyhead">
+                                <div class="card-header" role="tab" id="albertohead">
                                     <h3 class="mb-0">
-                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#danny">
-                                        DigitalOcean <small>- An IaaS Provider</small></a>
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#alberto">
+                                        Collaborative Filtering <small>based on User Similarity</small></a>
                                     </h3>
                                 </div>
-                                <div role="tabpanel" class="collapse" id="danny">
+                                <div role="tabpanel" class="collapse" id="alberto">
                                     <div class="card-block">
                                         <ul class="hidden-xs-down">
-                                            <li>They are a scalable compute platform with add-on storage, security, and monitoring capabilities to easily run production applications. </li>
-                                            <li>Deploy our VPS around the world in any of 8 datacenter regions.</li>
-                                            <li>Predictable, pay-as-you-go pricing.</li>
+                                            <li>Build the user-item <strong>Rating Matrix</strong></li>
+                                            <li>Build the <strong>Distance Matrix</strong> based on Cosine similarity</li>
+                                            <li>Predict the rating based on Distance Matrix by <strong>Weighted Average</strong></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -169,27 +169,48 @@
                                             <li>Uses Jinja2 templating</li>
                                             <li>Support for secure cookies (client side sessions)</li>
                                             <li>Google App Engine compatibility</li>
-                                        </ul>    
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" role="tab" id="albertohead">
-                                    <h3 class="mb-0">
-                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#alberto">
-                                        Collaborative Filtering <small>based on User Similarity</small></a>
-                                    </h3>
-                                </div>
-                                <div role="tabpanel" class="collapse" id="alberto">
-                                    <div class="card-block">
-                                        <ul class="hidden-xs-down">
-                                            <li>Build the user-item <strong>Rating Matrix</strong></li>
-                                            <li>Build the <strong>Distance Matrix</strong> based on Cosine similarity</li>
-                                            <li>Predict the rating based on Distance Matrix by <strong>Weighted Average</strong></li>
                                         </ul>
                                     </div>
-                                </div>                               
+                                </div>
                             </div>
+
+                            <div class="card">
+                                <div class="card-header" role="tab" id="dannyhead">
+                                    <h3 class="mb-0">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#danny">
+                                        AWS <small>- An IaaS Provider</small></a>
+                                    </h3>
+                                </div>
+                                <div role="tabpanel" class="collapse" id="danny">
+                                    <div class="card-block">
+                                        <ul class="hidden-xs-down">
+                                            <li>EC2 for deployment</li>
+                                            <li>S3 to store the dataset</li>
+                                            <li>dynamoDB to record recommending result, sharing with echo</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" role="tab" id="dannyhead">
+                                    <h3 class="mb-0">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#danny">
+                                        Alex <small>-  Amazon's cloud-based voice service</small></a>
+                                    </h3>
+                                </div>
+                                <div role="tabpanel" class="collapse" id="danny">
+                                    <div class="card-block">
+                                        <ul class="hidden-xs-down">
+                                            <li>Alexa, development platform</li>
+                                            <li>lambda to  run code without provisioning or managing servers</li>
+                                            <li>dynamoDB to get the data</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -206,7 +227,7 @@
                     <ul class="list-unstyled">
                         <li><a href="/">Home</a></li>
                         <li><a href="/movies/">Movie</a></li>
-                        <li><a href="#">About us</a></li>
+                        <li><a href="#">About</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-sm-5">

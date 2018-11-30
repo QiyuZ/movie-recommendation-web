@@ -12,9 +12,9 @@ def homepage():
 def movies():
     return render_template("movies.html")
 
-@app.route('/aboutus/')
+@app.route('/about/')
 def aboutus():
-    return render_template("aboutus.html")
+    return render_template("about.html")
 
 @app.route('/result/', methods =["GET","POST"])
 def result(premovie):

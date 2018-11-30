@@ -3,10 +3,14 @@ import pandas as pd
 import boto3
 #from sklearn import cross_validation as cv
 from sklearn.metrics.pairwise import pairwise_distances
+from boto3.dynamodb.conditions import Key, Attr
 
 
-def recommend_movie(userid,num):
+
+def recommend_movie(userid, num):
     # read in users
+    if userid < 0:
+        userid = 1
     client = boto3.client('s3') #low-level functional API
 
     resource = boto3.resource('s3') #high-level object-oriented API
@@ -55,5 +59,25 @@ def recommend_movie(userid,num):
     premovie = []
     for i in itemnum:
         premovie.append(item_dic[str(i)])
+
+    #generate a 10 res list
+    pre1 = sorted(range(len(a)), key=lambda i: a[i])[-10:]
+    itemnum1 = [x + 1 for x in pre1]
+
+    premovie1 = []
+    for i in itemnum1:
+        premovie1.append(item_dic[str(i)])
+
+    #write the result to dynamoDB
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('movie')
+    status = int(table.query(KeyConditionExpression=Key('userID').eq(userid))['Count'])
+    if status == 0:
+        table.put_item(
+            Item={
+                'userID': userid,
+                'movies': premovie1,
+            }
+        )
 
     return premovie
