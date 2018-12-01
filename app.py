@@ -25,6 +25,8 @@ def GET_page():
     if request.method == "POST":
         attempted_userid = int(request.form['userid'])
         attempted_number = int(request.form['number'])
+        if attempted_userid <= 10:
+            return render_template("error.html")
         premovie = model.recommend_movie(attempted_userid, attempted_number)
         return render_template("result.html", premovie=premovie)
 
