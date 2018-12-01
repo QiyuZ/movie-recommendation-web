@@ -8,11 +8,27 @@ from boto3.dynamodb.conditions import Key, Attr
 
 
 def recommend_movie(userid, num):
+    #check whether already exist
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('movie')
+    status = int(table.query(KeyConditionExpression=Key('userID').eq(userid))['Count'])
+    if status == 1:
+        res = []
+        response = table.get_item(
+            Key={
+                'userID': userid,
+            }
+        )
+        item = response['Item']['movies']
+        count = num
+        for i in item:
+            res.append(i)
+            count -= 1
+            if count == 0:
+                break
+        return res
     # read in users
-    if userid < 0:
-        userid = 1
     client = boto3.client('s3') #low-level functional API
-
     resource = boto3.resource('s3') #high-level object-oriented API
     my_bucket = resource.Bucket('qz5uwdrdinus') #subsitute this for your s3 bucket name.
 
@@ -69,9 +85,6 @@ def recommend_movie(userid, num):
         premovie1.append(item_dic[str(i)])
 
     #write the result to dynamoDB
-    dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('movie')
-    status = int(table.query(KeyConditionExpression=Key('userID').eq(userid))['Count'])
     if status == 0:
         table.put_item(
             Item={

@@ -24,8 +24,7 @@ def lambda_handler(event, context):
 
 
 def on_session_started(session_started_request, session):
-    print
-    "Starting new session."
+    print "Starting new session."
 
 
 def on_launch(launch_request, session):
