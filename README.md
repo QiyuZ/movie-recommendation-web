@@ -13,3 +13,7 @@ For some reasons,I did not finish "create new user" and "add movies" these 2 fun
 website: http://ec2-54-173-123-202.compute-1.amazonaws.com:8000/
 
 echo demo: https://www.youtube.com/watch?v=DrvBdAm6u98&feature=youtu.be
+
+And this is a final report of my work, I'm happy if you would like to move more steps based on this project. Free to ask me any questions
+
+https://www.youtube.com/watch?v=DrvBdAm6u98&feature=youtu.be
