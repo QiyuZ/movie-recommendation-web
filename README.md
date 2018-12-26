@@ -8,6 +8,8 @@ movie recommendation website based on Flask and Echo. This is my cloud computing
 
 For some reasons,I did not finish "create new user" and "add movies" these 2 functions
 
-###
+### Demo
+
 website: http://ec2-54-173-123-202.compute-1.amazonaws.com:8000/
+
 echo demo: https://www.youtube.com/watch?v=DrvBdAm6u98&feature=youtu.be
