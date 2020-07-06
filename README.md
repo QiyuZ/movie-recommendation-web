@@ -10,7 +10,7 @@ For some reasons,I did not finish "create new user" and "add movies" these 2 fun
 
 ### Demo
 
-website: Movie-Recommendation-System-1457716774.us-east-1.elb.amazonaws.com
+website: http://Movie-Recommendation-System-1457716774.us-east-1.elb.amazonaws.com
 
 echo demo: https://www.youtube.com/watch?v=DrvBdAm6u98&feature=youtu.be
 
